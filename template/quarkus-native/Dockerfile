@@ -24,6 +24,9 @@ FROM openfaas/of-watchdog:0.8.1 as watchdog
 # Create new image
 FROM registry.access.redhat.com/ubi8/ubi-minimal as base
 
+export http_proxy=
+export https_proxy=
+
 RUN microdnf install shadow-utils
 RUN groupadd app && useradd app -g app -d /home/app && mkdir -p /home/app/config
 USER app
@@ -50,6 +53,6 @@ ENV write_timeout="25s"
 ENV read_timeout="25s"
 
 
-HEALTHCHECK --interval=1s CMD [ -e /tmp/.lock ] || exit 1
+HEALTHCHECK --interval=5s CMD [ -e /tmp/.lock ] || exit 1
 
 CMD ["fwatchdog"]
