@@ -55,8 +55,12 @@ To conclude, using Quarkus for serverless is exactly the same as using quarkus f
 ### Trying the template
 
 ```
-$ faas template pull https://github.com/pmlopes/openfaas-quarkus-native-template
-$ faas new --lang quarkus-native <fn-name>
+# curl -sSL https://cli.openfaas.com | sh
+# sudo cp faas-cli /usr/local/bin/faas-cli
+
+faas-cli template pull https://github.com/pmlopes/openfaas-quarkus-native-template
+faas-cli new --lang quarkus-native <fn-name>
+faas-cli new --list
 ```
 
 ### Building
@@ -80,6 +84,10 @@ The Dockerfile performs the following actions:
 You can also run the Dockerfile locally:
 
 ```
+faas-cli build -f ./<fn-name>
+
+----------------
+
 docker build -t my-quarkus-fn .
 docker run --rm -p 8080:8080 my-quarkus-fn
 ```
