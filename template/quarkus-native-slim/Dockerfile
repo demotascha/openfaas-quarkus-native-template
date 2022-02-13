@@ -1,5 +1,5 @@
 # Get a build environment
-FROM ghcr.io/graalvm/graalvm-ce:java11-21.3.1 as build-aot
+FROM ghcr.io/graalvm/graalvm-ce:java11-21.3.0 as build-aot
 RUN gu install native-image
 # Set working dir
 RUN mkdir /app && mkdir -p /tmp/tmpapp
